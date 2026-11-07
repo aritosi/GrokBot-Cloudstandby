@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
-<title id="title">Grok Supercloud</title><desc id="desc">A calm blue sky, a small cloud, and a message about keeping work moving.</desc>
+<title id="title">GrokBot Cloudstandby</title><desc id="desc">A calm blue sky, a small cloud, and a message about keeping work moving.</desc>
 <defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6f9fd"/><stop offset="1" stop-color="#e8f0fb"/></linearGradient><linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9ebdda"/><stop offset="1" stop-color="#739fc7"/></linearGradient></defs>
 <rect width="1600" height="560" rx="24" fill="url(#sky)"/>
 <circle cx="1300" cy="84" r="310" fill="#fff" opacity=".25"/>
 <circle cx="1165" cy="440" r="220" fill="#dbe9f8" opacity=".45"/>
 <g transform="translate(1084 170)"><path d="M48 170h222c54 0 88-34 88-78 0-43-33-75-75-77C264-35 215-61 164-48 123-38 95-9 87 28 37 23 0 55 0 99c0 42 22 71 48 71Z" fill="#fff" opacity=".8"/><path d="M54 164h210c50 0 82-31 82-72 0-39-30-69-70-70-17-47-63-70-109-58-38 9-64 37-71 71C48 30 12 58 12 99c0 39 21 65 42 65Z" fill="url(#blue)" opacity=".2"/><circle cx="278" cy="37" r="9" fill="#83aaca"/></g>
 <text x="112" y="178" fill="#8195aa" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="24" font-weight="600" letter-spacing="6">A SKILL FOR GROK BOT</text>
-<text x="106" y="286" fill="#263d52" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="76" font-weight="600" letter-spacing="-2">Grok Supercloud</text>
+<text x="106" y="286" fill="#263d52" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="76" font-weight="600" letter-spacing="-2">GrokBot Cloudstandby</text>
 <text x="110" y="345" fill="#728aa1" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="27" letter-spacing=".4">A little more time for the work that matters.</text>
 <path d="M112 410h72" stroke="#a6c0d7" stroke-width="3" stroke-linecap="round"/>
 </svg>

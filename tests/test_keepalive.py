@@ -8,7 +8,7 @@ import time
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = ROOT / 'skills/grok-supercloud/scripts'
+SCRIPTS = ROOT / 'skills/grokbot-cloudstandby/scripts'
 
 class KeepaliveTest(unittest.TestCase):
     def setUp(self):

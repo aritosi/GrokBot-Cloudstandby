@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/cover.svg" alt="Grok Supercloud — a little more time for the work that matters" width="100%">
+<img src="assets/cover.svg" alt="GrokBot Cloudstandby — a little more time for the work that matters" width="100%">
 
-# 超级小云
+# GrokBot Cloudstandby
 
 **让云电脑安静地陪你工作。**<br>
 Keep your cloud computer ready.<br>
@@ -16,7 +16,7 @@ Keep your cloud computer ready.<br>
 
 ## 简体中文
 
-超级小云是一个专为 Grok Bot 准备的保活技能。你可以让它在指定时间内保持云电脑活跃，方便远程连接和运行任务。
+GrokBot Cloudstandby是一个专为 Grok Bot 准备的保活技能。你可以让它在指定时间内保持云电脑活跃，方便远程连接和运行任务。
 
 ### 它能做什么
 
@@ -34,8 +34,8 @@ Keep your cloud computer ready.<br>
 打开 Grok Bot，复制下面这段话发给它：
 
 ```text
-请帮我安装这个技能：https://github.com/aritosi/grok-supercloud-keepalive
-请完整安装 skills/grok-supercloud 目录，包括 SKILL.md 和 scripts。安装完成后先不要启动，告诉我结果。
+请帮我安装这个技能：https://github.com/aritosi/GrokBot-Cloudstandby
+请完整安装 skills/grokbot-cloudstandby 目录，包括 SKILL.md 和 scripts。安装完成后先不要启动，告诉我结果。
 ```
 
 等待 Bot 告诉你安装完成，就可以开始使用。
@@ -70,7 +70,7 @@ Keep your cloud computer ready.<br>
 
 ## 日本語
 
-スーパー・スモールクラウドは、Grok Bot のクラウドコンピューターを指定した時間内、アクティブに保つためのスキルです。リモート接続やタスクの実行に役立ちます。
+GrokBot Cloudstandbyは、Grok Bot のクラウドコンピューターを指定した時間内、アクティブに保つためのスキルです。リモート接続やタスクの実行に役立ちます。
 
 ### できること
 
@@ -88,8 +88,8 @@ Keep your cloud computer ready.<br>
 Grok Bot を開き、次の文章をコピーして送信してください。
 
 ```text
-このスキルをインストールしてください：https://github.com/aritosi/grok-supercloud-keepalive
-skills/grok-supercloud フォルダーを、SKILL.md と scripts を含めてすべてインストールしてください。完了したら、まだ起動せずに結果を教えてください。
+このスキルをインストールしてください：https://github.com/aritosi/GrokBot-Cloudstandby
+skills/grokbot-cloudstandby フォルダーを、SKILL.md と scripts を含めてすべてインストールしてください。完了したら、まだ起動せずに結果を教えてください。
 ```
 
 インストール完了の返事が届いたら、使い始められます。
@@ -124,7 +124,7 @@ skills/grok-supercloud フォルダーを、SKILL.md と scripts を含めてす
 
 ## English
 
-Supercloud is a keep-alive skill for your Grok Bot cloud computer. Keep it active for a chosen period while you connect remotely or run a task.
+GrokBot Cloudstandby is a keep-alive skill for your Grok Bot cloud computer. Keep it active for a chosen period while you connect remotely or run a task.
 
 ### What it can do
 
@@ -142,8 +142,8 @@ In one real-world test, keeping the computer active for **12 hours used about 2�
 Open Grok Bot, then copy and send this message:
 
 ```text
-Please install this skill: https://github.com/aritosi/grok-supercloud-keepalive
-Install the complete skills/grok-supercloud directory, including SKILL.md and scripts. When installation is complete, tell me the result without starting it yet.
+Please install this skill: https://github.com/aritosi/GrokBot-Cloudstandby
+Install the complete skills/grokbot-cloudstandby directory, including SKILL.md and scripts. When installation is complete, tell me the result without starting it yet.
 ```
 
 Once your Bot confirms the installation, you are ready to begin.

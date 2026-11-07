@@ -248,7 +248,7 @@ def stop(args):
 
 
 def main():
-    p = argparse.ArgumentParser(description='Grok Supercloud keepalive')
+    p = argparse.ArgumentParser(description='GrokBot Cloudstandby keepalive')
     sub = p.add_subparsers(dest='action', required=True)
     a = sub.add_parser('start'); a.add_argument('--task', required=True); a.add_argument('--until', required=True)
     group = a.add_mutually_exclusive_group(); group.add_argument('--pid', type=int); group.add_argument('--run')
