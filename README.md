@@ -1,115 +1,162 @@
 <div align="center">
 
-# ☁️ 超级小云
+<img src="assets/cover.svg" alt="Grok Supercloud — a little more time for the work that matters" width="100%">
 
-### Grok Supercloud · Keep the work moving.
+# 超级小云
 
-**让云电脑有序待命，让长任务有始有终。**  
-*Keep your cloud computer ready, with less chatter.*  
-*クラウドの作業を、静かに続ける。*
+**让云电脑安静地陪你工作。**  
+Keep your cloud computer ready.  
+クラウドでの作業を、もっとなめらかに。
 
-Grok Bot 云电脑专用保活技能 · 一句话启动 · 有期限运行 · 极简回报
-
-[开始使用](#-一句话开始) · [适用场景](#-什么时候用) · [工作方式](#-它如何工作) · [命令](#-命令参考)
+[简体中文](#简体中文)　 ·　 [日本語](#日本語)　 ·　 [English](#english)
 
 </div>
 
----
+<br>
 
-## ☁️ 一句话开始
+## 简体中文
 
-安装技能后，对 Grok Bot 说：
+超级小云是一个专为 Grok Bot 准备的保活技能。你可以让它在指定时间内保持云电脑活跃，方便远程连接和运行任务。
 
-> 保活：我的云电脑，持续 24 小时。
+### 01 · 安装
 
-或者，指定已有任务和明确截止时间：
-
-> 保活：视频处理任务，到今天晚上 11 点。
-
-如果你已经知道任务进程，告诉 Bot 进程 PID；如果需要启动新任务，告诉它具体命令。没有进程或命令时，技能只按期限保持活跃，**不会凭空判断任务是否完成**。
-
-第一次使用时，技能会引导你选择适合的时长。截止时间和时区不明确时，它会先问清楚。
-
-## ✦ 什么时候用
-
-| 场景 | 推荐方式 |
-| :--- | :--- |
-| **短任务** | 指定任务和结束时间，到时停止保活。 |
-| **持续在线** | 如「保活 24 小时」，到期后再按需要开启。 |
-| **已有进程** | 登记 PID，进程退出或到期后停止监视。 |
-| **新命令** | 明确提供命令和工作目录，记录退出状态及日志。 |
-
-## ◌ 它如何工作
+打开 Grok Bot，复制下面这段话发给它：
 
 ```text
-你说一句话 → ka-start 登记任务和期限
-                         ↓
-             一个 watcher 在前台等待 ka-wait
-                         ↓
-              WAIT → 接力等待 → DONE / EXPIRED
-                                   ↓
-                        汇报状态与日志末尾
+请帮我安装这个技能：https://github.com/aritosi/grok-supercloud-keepalive
+请完整安装 skills/grok-supercloud 目录，包括 SKILL.md 和 scripts。安装完成后先不要启动，告诉我结果。
 ```
 
-`ka-start` 负责截止时间、任务登记与 watcher 租约；`ka-wait` 单次等待约 12 分钟，只返回一个状态词；`ka-report` 汇总结果。多个任务共用一份 watcher 租约。注册、续租和前台等待分别使用文件锁，避免并发操作时重复创建活跃等待者。
+等待 Bot 告诉你安装完成，就可以开始使用。
 
-**重要：后台脚本本身不能防止云电脑休眠。**需要 Grok Bot 的前台 Shell 工具调用等待；技能会引导 Bot 创建单个 watcher，并在平台限制内接力。平台行为、会话限制或网络断开可能导致保活失败，本项目不能保证 24 小时可用。
+### 02 · 开始保活
 
-## ↓ 安装
+复制下面这句话，按需要修改时间，然后发给 Bot：
 
-将 `skills/grok-supercloud` 复制到 Grok Bot 可发现的技能目录，或按照 Grok Bot 当前的技能安装方式导入整个目录。目录中的 `SKILL.md` 和 `scripts/` 必须一起保留；需要 Python 3、Unix 文件锁与前台 Shell 工具。
-
-示例：
-
-```sh
-# SKILL_DIR 是 Grok Bot 当前使用的技能目录；请替换为实际路径。
-cp -R skills/grok-supercloud "$SKILL_DIR/"
+```text
+请帮我保活云电脑 24 小时。
 ```
 
-**不需要以 root 运行。**安装后请先用短时任务验证；脚本只管理保活登记，不会自行启用系统服务或定时任务。
+也可以告诉它具体的任务和截止时间：
 
-## ⌘ 命令参考
-
-以下命令从技能目录运行；`S` 代表 `scripts` 目录。
-
-```sh
-S=./skills/grok-supercloud/scripts
-
-# 从现在开始保活 24 小时
-"$S/ka-start" --task '云电脑待命' --until 24h
-
-# 跟踪已有进程，到指定时刻结束
-"$S/ka-start" --task '处理任务' --pid 1234 --until '2026-11-09T23:00:00+08:00'
-
-# 明确启动一项命令并登记
-"$S/ka-start" --task '数据处理' --until 2h --cwd "$PWD" --run 'python3 process.py'
-
-# 查看登记、状态和最多 8 行日志
-"$S/ka-report"
-
-# 停止全部或指定任务的保活登记
-"$S/ka-stop"
-"$S/ka-stop" --job JOB_ID
+```text
+请帮我保活视频处理任务，到今天晚上 11 点。
 ```
 
-`ka-start` 返回 `START` 时，才需要启动 watcher 并传入返回的 `lease`；返回 `JOIN` 表示复用当前租约。`ka-wait --lease ...` **必须由 Grok 的前台 Shell 工具调用**，本地运行它或放入后台并不能证明云电脑保活。每棒最多等待三轮，再由主会话接力；连接中断或工具拒绝时不无限重试。
+有明确需要启动的命令或正在运行的进程时，把命令或进程信息一并告诉 Bot。时间不明确时，它会先和你确认。
 
-`HH:MM` 使用运行机器的本地时区并选择下一个对应时刻；跨时区请使用带时区的 ISO 时间。`--until` 是保活截止时间，不会等待到未来某个开始时间再启动。
+### 03 · 停止保活
 
-## ◎ 状态与边界
+```text
+请停止保活。
+```
 
-- `watcher: true` 表示存在尚未过期的租约，不保证 Agent 或前台等待仍然活着；watcher 异常退出后租约最长约 15 分钟失效。
-- `WAIT`：继续等待；`DONE`：已无运行中登记；`EXPIRED`：至少有登记到期；`BUSY`：已有等待者；`STALE`：租约失效；`ERROR`：执行失败。
-- 手动保活登记只在到期或停止时结束。指定 PID 退出时只能判断进程消失，**不代表任务成功**。
-- 截止或 `ka-stop` 只停止保活登记，**不会终止用户的任务进程**。
-- 状态、命令和日志保存在 `~/.grok-supercloud/`；目录权限为 `0700`，文件权限为 `0600`。日志可能包含敏感信息。
-- 这是有界保活，不是平台官方的常驻服务；执行和接力仍可能消耗模型额度。它不读取或报告账单，也不承诺零消耗。
+<br>
+
+---
+
+<br>
+
+## 日本語
+
+スーパー・スモールクラウドは、Grok Bot のクラウドコンピューターを指定した時間内、アクティブに保つためのスキルです。リモート接続やタスクの実行に役立ちます。
+
+### 01 · インストール
+
+Grok Bot を開き、次の文章をコピーして送信してください。
+
+```text
+このスキルをインストールしてください：https://github.com/aritosi/grok-supercloud-keepalive
+skills/grok-supercloud フォルダーを、SKILL.md と scripts を含めてすべてインストールしてください。完了したら、まだ起動せずに結果を教えてください。
+```
+
+インストール完了の返事が届いたら、使い始められます。
+
+### 02 · 保活を開始
+
+次の文章の時間を必要に応じて変更し、送信してください。
+
+```text
+クラウドコンピューターを24時間保活してください。
+```
+
+タスクと終了時刻を指定することもできます。
+
+```text
+動画処理タスクを、今日の午後11時まで保活してください。
+```
+
+起動したいコマンドや実行中のプロセスがある場合は、その情報も一緒に伝えてください。時刻が不明確な場合は、Bot が確認します。
+
+### 03 · 保活を停止
+
+```text
+保活を停止してください。
+```
+
+<br>
+
+---
+
+<br>
+
+## English
+
+Supercloud is a keep-alive skill for your Grok Bot cloud computer. Keep it active for a chosen period while you connect remotely or run a task.
+
+### 01 · Install
+
+Open Grok Bot, then copy and send this message:
+
+```text
+Please install this skill: https://github.com/aritosi/grok-supercloud-keepalive
+Install the complete skills/grok-supercloud directory, including SKILL.md and scripts. When installation is complete, tell me the result without starting it yet.
+```
+
+Once your Bot confirms the installation, you are ready to begin.
+
+### 02 · Start
+
+Copy this message, change the duration if you like, and send it to your Bot:
+
+```text
+Please keep my cloud computer active for 24 hours.
+```
+
+You can also name a task and an end time:
+
+```text
+Please keep my video processing task active until 11 PM today.
+```
+
+If you want to start a specific command or monitor an existing process, include its details. Your Bot will ask if the time is unclear.
+
+### 03 · Stop
+
+```text
+Please stop the keep-alive.
+```
+
+<br>
 
 ---
 
 <div align="center">
 
-**Stay awake. Stay focused.**  
-静かに待ち、必要なときに動く。
+**Stay ready. Take your time.**  
+让想做的事，继续向前。  
+大切な作業を、あなたのペースで。
+
+<br>
+
+[MIT License](LICENSE) · Independent project · 非官方项目 · 非公式プロジェクト
+
+本项目与 Grok Bot、xAI 及 Cursor 官方无关。  
+This independent project is not affiliated with Grok Bot, xAI, or Cursor.  
+本プロジェクトは Grok Bot、xAI、Cursor の公式プロジェクトではありません。
+
+保活效果取决于平台环境，运行时仍可能消耗额度。  
+Availability and usage depend on the platform.  
+動作と利用量はプラットフォームの環境に依存します。
 
 </div>
