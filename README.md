@@ -4,8 +4,8 @@
 
 # 超级小云
 
-**让云电脑安静地陪你工作。**  
-Keep your cloud computer ready.  
+**让云电脑安静地陪你工作。**<br>
+Keep your cloud computer ready.<br>
 クラウドでの作業を、もっとなめらかに。
 
 [简体中文](#简体中文)　 ·　 [日本語](#日本語)　 ·　 [English](#english)
@@ -143,20 +143,20 @@ Please stop the keep-alive.
 
 <div align="center">
 
-**Stay ready. Take your time.**  
-让想做的事，继续向前。  
+**Stay ready. Take your time.**<br>
+让想做的事，继续向前。<br>
 大切な作業を、あなたのペースで。
 
 <br>
 
 [MIT License](LICENSE) · Independent project · 非官方项目 · 非公式プロジェクト
 
-本项目与 Grok Bot、xAI 及 Cursor 官方无关。  
-This independent project is not affiliated with Grok Bot, xAI, or Cursor.  
+本项目与 Grok Bot、xAI 及 Cursor 官方无关。<br>
+This independent project is not affiliated with Grok Bot, xAI, or Cursor.<br>
 本プロジェクトは Grok Bot、xAI、Cursor の公式プロジェクトではありません。
 
-保活效果取决于平台环境，运行时仍可能消耗额度。  
-Availability and usage depend on the platform.  
+保活效果取决于平台环境，运行时仍可能消耗额度。<br>
+Availability and usage depend on the platform.<br>
 動作と利用量はプラットフォームの環境に依存します。
 
 </div>
