@@ -16,6 +16,7 @@ import uuid
 ROOT = Path(os.environ.get('KA_STATE_DIR', str(Path.home() / '.grok-supercloud'))).expanduser()
 MAX_WAIT = 720
 LEASE_SECONDS = 900
+HEARTBEAT_SECONDS = 60
 
 
 def setup():
@@ -135,7 +136,7 @@ def start(args):
         refresh(state, time.time())
         state['jobs'].append(job)
         lease = state.get('lease')
-        created = not lease or lease['expires'] < time.time()
+        created = not lease or lease.get('stopped', False) or lease['expires'] < time.time()
         if created:
             lease = {'token': secrets.token_urlsafe(18), 'expires': time.time() + LEASE_SECONDS, 'jobs': []}
             state['lease'] = lease
@@ -185,9 +186,12 @@ def wait(args):
                     lease = state.get('lease')
                     if not lease or not secrets.compare_digest(lease['token'], args.lease):
                         print('STALE'); return
+                    if lease.get('stopped', False):
+                        print('STOPPED'); return
                     now = time.time()
                     if lease['expires'] < now:
                         print('STALE'); return
+                    before = [(j['status'], j.get('exit_code')) for j in state['jobs']]
                     refresh(state, now)
                     live = [j for j in state['jobs'] if j['status'] == 'running']
                     if not live:
@@ -195,8 +199,12 @@ def wait(args):
                         state['lease'] = None
                         save(state)
                         print(result); return
-                    lease['expires'] = now + LEASE_SECONDS
-                    save(state)
+                    changed = before != [(j['status'], j.get('exit_code')) for j in state['jobs']]
+                    renew = lease['expires'] - now <= LEASE_SECONDS - HEARTBEAT_SECONDS
+                    if renew:
+                        lease['expires'] = now + LEASE_SECONDS
+                    if changed or renew:
+                        save(state)
                     next_deadline = min(j['deadline'] for j in live)
                 remaining = end - time.monotonic()
                 if remaining <= 0:
@@ -222,7 +230,8 @@ def report(args):
             except OSError:
                 row['log_tail'] = []
         rows.append(row)
-    print(json.dumps({'jobs': rows, 'watcher': bool(state.get('lease') and state['lease']['expires'] > time.time())}, ensure_ascii=False))
+    lease = state.get('lease')
+    print(json.dumps({'jobs': rows, 'watcher': bool(lease and not lease.get('stopped', False) and lease['expires'] > time.time())}, ensure_ascii=False))
 
 
 def stop(args):
@@ -232,7 +241,8 @@ def stop(args):
             if job['status'] == 'running' and (not args.job or job['id'] == args.job):
                 job['status'] = 'stopped'
         if not any(j['status'] == 'running' for j in state['jobs']):
-            state['lease'] = None
+            if state.get('lease'):
+                state['lease']['stopped'] = True
         save(state)
     print('STOPPED')
 

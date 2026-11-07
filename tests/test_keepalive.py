@@ -68,8 +68,29 @@ class KeepaliveTest(unittest.TestCase):
             a = json.loads(self.run_cmd('ka-start', '--task', 'external', '--until', '1m', '--pid', str(p.pid)))
             self.run_cmd('ka-stop', '--job', a['job'])
             self.assertIsNone(p.poll())
-            self.assertEqual(self.run_cmd('ka-wait', '--lease', a['lease'], '--seconds', '1'), 'STALE')
+            self.assertEqual(self.run_cmd('ka-wait', '--lease', a['lease'], '--seconds', '1'), 'STOPPED')
+            new = json.loads(self.run_cmd('ka-start', '--task', 'restart', '--until', '1m'))
+            self.assertEqual(new['result'], 'START')
+            self.assertNotEqual(a['lease'], new['lease'])
         finally:
             p.terminate(); p.wait()
+
+    def test_wait_checks_jobs_without_rewriting_unchanged_state(self):
+        a = json.loads(self.run_cmd('ka-start', '--task', 'quiet', '--until', '1m'))
+        state_path = Path(self.tmp.name) / 'state.json'
+        before = state_path.stat().st_mtime_ns
+        self.assertEqual(self.run_cmd('ka-wait', '--lease', a['lease'], '--seconds', '6'), 'WAIT')
+        self.assertEqual(state_path.stat().st_mtime_ns, before)
+
+    def test_running_waiter_recognizes_a_user_stop(self):
+        a = json.loads(self.run_cmd('ka-start', '--task', 'manual', '--until', '1m'))
+        p = subprocess.Popen([str(SCRIPTS/'ka-wait'), '--lease', a['lease'], '--seconds', '8'],
+                             env=self.env, text=True, stdout=subprocess.PIPE)
+        try:
+            time.sleep(.3)
+            self.assertEqual(self.run_cmd('ka-stop'), 'STOPPED')
+            self.assertEqual(p.communicate(timeout=7)[0].strip(), 'STOPPED')
+        finally:
+            if p.poll() is None: p.terminate(); p.wait()
 
 if __name__ == '__main__': unittest.main()
