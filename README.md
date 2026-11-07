@@ -18,6 +18,17 @@ Keep your cloud computer ready.<br>
 
 超级小云是一个专为 Grok Bot 准备的保活技能。你可以让它在指定时间内保持云电脑活跃，方便远程连接和运行任务。
 
+### 它能做什么
+
+- **按需保活**：为远程连接或长任务设置保活时间，短至几小时，长至 24 小时。
+- **陪任务运行**：登记已有进程，或按照你的指示启动指定命令；任务结束后告诉你结果。
+- **到时自动结束**：设置明确的截止时间，到期后停止保活；不会擅自结束你的任务。
+- **安静地工作**：多个登记共用一个保活看守，尽量减少重复对话和输出。
+
+### 关于消耗
+
+在一次实际使用中，保活 **12 小时约消耗账号额度的 2%～3%**。这是单个账号的参考数据，实际消耗会因套餐、上下文和运行情况而不同。
+
 ### 01 · 安装
 
 打开 Grok Bot，复制下面这段话发给它：
@@ -61,6 +72,17 @@ Keep your cloud computer ready.<br>
 
 スーパー・スモールクラウドは、Grok Bot のクラウドコンピューターを指定した時間内、アクティブに保つためのスキルです。リモート接続やタスクの実行に役立ちます。
 
+### できること
+
+- **必要な時間だけ保活**：リモート接続や長時間タスクに合わせて、数時間から24時間まで指定できます。
+- **タスクを見守る**：実行中のプロセスを登録したり、指定したコマンドを起動したりできます。終了後は結果をお知らせします。
+- **期限になったら終了**：指定時刻に保活を停止します。タスク自体を勝手に終了することはありません。
+- **静かに動作**：複数の登録で一つの見守りを共有し、余分な会話と出力を抑えます。
+
+### 利用量について
+
+実際の利用では、**12時間の保活でアカウントの利用枠を約2〜3%**消費しました。一つのアカウントでの参考値であり、実際の利用量はプランや実行状況によって異なります。
+
 ### 01 · インストール
 
 Grok Bot を開き、次の文章をコピーして送信してください。
@@ -103,6 +125,17 @@ skills/grok-supercloud フォルダーを、SKILL.md と scripts を含めてす
 ## English
 
 Supercloud is a keep-alive skill for your Grok Bot cloud computer. Keep it active for a chosen period while you connect remotely or run a task.
+
+### What it can do
+
+- **Keep your computer ready** for a few hours or up to 24 hours while you connect remotely or run a long task.
+- **Watch a task** by registering an existing process or starting a command you provide, then report when it ends.
+- **Stop at your chosen deadline** without terminating your task.
+- **Work quietly** by sharing one watcher across registered tasks and keeping repeated output to a minimum.
+
+### Usage
+
+In one real-world test, keeping the computer active for **12 hours used about 2–3% of the account’s allowance**. This is a reference from one account; actual usage varies with the plan, context, and runtime conditions.
 
 ### 01 · Install
 
