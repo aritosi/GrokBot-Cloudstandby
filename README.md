@@ -51,7 +51,7 @@ Keep your cloud computer ready.<br>
 也可以告诉它具体的任务和截止时间：
 
 ```text
-请帮我保活视频处理任务，到今天晚上 11 点。
+请帮我保活云电脑，到今天晚上 11 点。
 ```
 
 有明确需要启动的命令或正在运行的进程时，把命令或进程信息一并告诉 Bot。时间不明确时，它会先和你确认。
@@ -105,7 +105,7 @@ skills/grok-supercloud フォルダーを、SKILL.md と scripts を含めてす
 タスクと終了時刻を指定することもできます。
 
 ```text
-動画処理タスクを、今日の午後11時まで保活してください。
+今日の午後11時まで保活してください。
 ```
 
 起動したいコマンドや実行中のプロセスがある場合は、その情報も一緒に伝えてください。時刻が不明確な場合は、Bot が確認します。
@@ -159,7 +159,7 @@ Please keep my cloud computer active for 24 hours.
 You can also name a task and an end time:
 
 ```text
-Please keep my video processing task active until 11 PM today.
+Please keep my computer active until 11 PM today.
 ```
 
 If you want to start a specific command or monitor an existing process, include its details. Your Bot will ask if the time is unclear.
