@@ -27,7 +27,7 @@ GrokBot Cloudstandby是一个专为 Grok Bot 准备的保活技能。你可以�
 
 ### 关于消耗
 
-在一次实际使用中，保活 **12 小时约消耗账号额度的 2%～3%**。这是单个账号的参考数据，实际消耗会因套餐、上下文和运行情况而不同。
+在一次实际使用中，保活 **5小时约消耗账号额度的 2%～3%**。这是单个账号的参考数据，实际消耗会因套餐、上下文和运行情况而不同。
 
 ### 01 · 安装
 
@@ -81,7 +81,7 @@ GrokBot Cloudstandbyは、Grok Bot のクラウドコンピューターを指定
 
 ### 利用量について
 
-実際の利用では、**12時間の保活でアカウントの利用枠を約2〜3%**消費しました。一つのアカウントでの参考値であり、実際の利用量はプランや実行状況によって異なります。
+実際の利用では、**5時間の保活でアカウントの利用枠を約2〜3%**消費しました。一つのアカウントでの参考値であり、実際の利用量はプランや実行状況によって異なります。
 
 ### 01 · インストール
 
@@ -135,7 +135,7 @@ GrokBot Cloudstandby is a keep-alive skill for your Grok Bot cloud computer. Kee
 
 ### Usage
 
-In one real-world test, keeping the computer active for **12 hours used about 2–3% of the account’s allowance**. This is a reference from one account; actual usage varies with the plan, context, and runtime conditions.
+In one real-world test, keeping the computer active for **5 hours used about 2–3% of the account’s allowance**. This is a reference from one account; actual usage varies with the plan, context, and runtime conditions.
 
 ### 01 · Install
 
